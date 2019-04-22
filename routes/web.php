@@ -14,3 +14,11 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', 'MainPage@show');
+
+Route::get('/appointments', 'Appointments@show');
+
+Route::get('/work_examples', 'WorkExamples@show');
+
+Route::get('/about_us', 'AboutUs@show');
