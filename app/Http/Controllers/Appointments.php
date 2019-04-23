@@ -11,7 +11,9 @@ class Appointments extends Controller
     public function show()
     {
         $carClasses = CarClass::all();
-        dd($carClasses);
-        return view('main_page');
+//        dd($carClasses);
+        return view('appointments')->with([
+            'carClasses' => $carClasses,
+            ]);
     }
 }
