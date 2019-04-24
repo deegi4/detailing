@@ -19,6 +19,8 @@ class CreateServicesTable extends Migration
             $table->bigInteger('service_type_id');
             $table->timestamps();
         });
+
+        (new \ServiceSeeder())->run();
     }
 
     /**

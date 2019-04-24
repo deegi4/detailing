@@ -16,9 +16,12 @@ class CreateJobsTable extends Migration
         Schema::create('jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('service_id');
+            $table->bigInteger('car_class_id');
             $table->bigInteger('price');
             $table->timestamps();
         });
+
+        (new \JobSeeder())->run();
     }
 
     /**

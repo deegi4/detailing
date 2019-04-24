@@ -18,6 +18,8 @@ class CreateServiceTypesTable extends Migration
             $table->string('name');
             $table->timestamps();
         });
+
+        (new \ServiceTypeSeeder())->run();
     }
 
     /**
