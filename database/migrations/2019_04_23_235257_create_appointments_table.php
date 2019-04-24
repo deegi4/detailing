@@ -15,7 +15,7 @@ class CreateAppointmentsTable extends Migration
     {
         Schema::create('appointments', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->timestamps('time');
+            $table->timestamp('time');
             $table->string('client');
             $table->string('contact');
             $table->bigInteger('cost');
