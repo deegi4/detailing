@@ -22,3 +22,7 @@ Route::get('/appointments', 'Appointments@show');
 Route::get('/work_examples', 'WorkExamples@show');
 
 Route::get('/about_us', 'AboutUs@show');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
