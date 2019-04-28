@@ -11,4 +11,10 @@ class ServiceType extends Model
     {
         return $this->hasMany(Service::class);
     }
+
+    public function jobs()
+    {
+        return $this->hasManyThrough(Job::class, Service::class);
+    }
+
 }

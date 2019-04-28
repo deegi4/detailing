@@ -11,4 +11,20 @@ class Job extends Model
     {
         return $this->belongsToMany(Appointment::class);
     }
+
+    public function carClass()
+    {
+        return $this->belongsTo(CarClass::class);
+    }
+
+    public function service()
+    {
+        return $this->belongsTo(Service::class );
+    }
+
+    public function scopeCarClass($query, $carClassId)
+    {
+        return $query->where('car_class_id', $carClassId);
+    }
+
 }

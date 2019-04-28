@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
     //
-    public function service_type()
+    public function serviceType()
     {
-        return $this->belongsToMany(ServiceType::class);
+        return $this->belongsTo(ServiceType::class);
     }
 
     public function jobs()
