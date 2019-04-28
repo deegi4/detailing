@@ -22,6 +22,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('price-list', require('./components/PriceList.vue').default);
+Vue.component('date-list', require('./components/DateList.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

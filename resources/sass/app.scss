@@ -12,3 +12,20 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+.week{
+
+}
+
+$grid-columns: 14;   // This is where you define the number of columns you need/want
+
+@if $enable-grid-classes {
+  .row-14 {
+    @include make-row();
+    > {
+      @if $enable-grid-classes {
+        @include make-grid-columns();
+      }
+    }
+  }
+}

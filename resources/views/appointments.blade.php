@@ -2,16 +2,21 @@
 
 @section('content')
 <div>
+{{--
     <ul>
         @foreach($carClasses as $carClass)
             <li data-id="{{$carClass->id}}">{{$carClass->name}}</li>
         @endforeach
     </ul>
-
+--}}
 
 {{--    <example-component></example-component>--}}
 {{--v1--}}
-    <price-list :car-classes="{{json_encode($carClasses)}}" :price-list="{{json_encode($priceList)}}"></price-list>
+    <price-list
+            :car-classes="{{json_encode($carClasses)}}"
+            :price-list="{{json_encode($priceList)}}"
+            :date-list="{{json_encode($dateList)}}"
+    ></price-list>
 
 {{--v2--}
     @foreach($priceList as $carClass)
