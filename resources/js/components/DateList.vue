@@ -15,17 +15,25 @@
 
 <script>
     export default {
-        props: [
-            'dateList'
-        ],
+        data() {
+            return {
+                dateList: [],
+                weekIndex: 0,
+                day: null,
+                hour: null,
+            }
+        },
         mounted() {
-            console.log('Component mounted.');
             this.update();
-
         },
         methods: {
             update: function () {
-                console.log(this.dateList);
+                window.axios.get('/appointments/date-list').then((response) => {
+                    debugger;
+
+                    this.dateList = response.data;
+                    console.log(this.dateList);
+                });
             }
         }
     }

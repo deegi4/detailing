@@ -12,11 +12,11 @@
 
 {{--    <example-component></example-component>--}}
 {{--v1--}}
-    <price-list
-            :car-classes="{{json_encode($carClasses)}}"
-            :price-list="{{json_encode($priceList)}}"
-            :date-list="{{json_encode($dateList)}}"
-    ></price-list>
+    <appointments
+{{--            :car-classes="{{json_encode($carClasses)}}"--}}
+{{--            :price-list="{{json_encode($priceList)}}"--}}
+{{--            :date-list="{{json_encode($dateList)}}"--}}
+    ></appointments>
 
 {{--v2--}
     @foreach($priceList as $carClass)
