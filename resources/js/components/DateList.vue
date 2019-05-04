@@ -4,7 +4,13 @@
             <div class="col-2" v-for="day in dateList">
                 <div class="pt-4">{{day.week_day}}</div>
                 <ul class="list-group" v-for="hour in day.hours">
-                    <li class="list-group-item list-group-item-action" data-entity="hour" :data-disabled="hour.disable" :data-date="hour.date">
+                    <li class="list-group-item list-group-item-action" data-entity="hour"
+                        :data-disabled="hour.disable"
+                        :data-date="hour.date"
+                        :disabled="isDisabled(hour.disable)"
+                        :class="{active: isCheckDate(hour.date)}"
+                        @click="checkDate(hour.date)"
+                    >
                         {{hour.start_time}} - {{hour.end_time}}
                     </li>
                 </ul>
@@ -18,6 +24,7 @@
         data() {
             return {
                 dateList: [],
+                date: '',
                 weekIndex: 0,
                 day: null,
                 hour: null,
@@ -34,7 +41,24 @@
                     this.dateList = response.data;
                     console.log(this.dateList);
                 });
-            }
+            },
+            isDisabled(disable){
+                return ( disable == 1 );
+            },
+            checkDate(date){
+                debugger;
+                this.date = date;
+                console.log(this.date);
+            },
+            isCheckDate(date){
+                return this.date == date;
+            },
         }
     }
 </script>
+
+<style scoped>
+    .active {
+        background: gray;
+    }
+</style>

@@ -97,10 +97,11 @@ class Appointments extends Controller
     public function getCarClassList()
     {
          $CarClasses = CarClass::all();
-         $CarClassList = [];
-         foreach ($CarClasses as $CarClass) {
-             $CarClassList[$CarClass->id] = $CarClass;
-         }
+        $CarClassList = $CarClasses->getDictionary();
+//         $CarClassList = [];
+//         foreach ($CarClasses as $CarClass) {
+//             $CarClassList[$CarClass->id] = $CarClass;
+//         }
          return  $CarClassList;
     }
     public function getPriceList()
@@ -130,9 +131,9 @@ class Appointments extends Controller
                     $jobData['id'] = $job->id;
                     $jobData['price'] = $job->price;
                     $jobData['name'] = $job->service->name;
-                    $serviceTypeData['jobs'][] = $jobData;
+                    $serviceTypeData['jobs'][$job->id] = $jobData;
                 }
-                $carClassData['service_types'][] = $serviceTypeData;
+                $carClassData['service_types'][$serviceType->id] = $serviceTypeData;
             }
             $priceList[$carClassId] = $carClassData;
         }
@@ -141,7 +142,7 @@ class Appointments extends Controller
     public function getPrice($carClassId)
     {
 //        if(empty($carClasses)){
-        $carClasses = CarClass::all();
+//        $carClasses = CarClass::all();
 //        }
 //        if(empty($serviceTypes)){
         $serviceTypes = ServiceType::all();
