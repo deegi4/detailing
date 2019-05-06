@@ -139,6 +139,31 @@ class Appointments extends Controller
         }
         return $priceList;
     }
+    public function register(Request $request)
+    {
+        $data = $request->all();
+        $date = $data['date'];
+//        $carbon = Carbon::parse($date);
+        $appointmentData = [
+            'time' => $date,
+            'client' => $data['client'],
+            'contact' => $data['contact'],
+            'cost' => $data['cost'],
+            'payment_type' => 1,
+        ];
+        $appointment = new Appointment($appointmentData);
+        $appointment->save();
+        $jobIds = $data['checkJobIds'];
+        $appointment->jobs()->sync($jobIds);
+
+        $appointmentList = Appointment::all();
+        $jobs = [];
+        foreach ($appointmentList as $appointmentItem){
+            $jobs[$appointmentItem->id] = $appointmentItem->jobs;
+        }
+        return $jobs;
+
+    }
     public function getPrice($carClassId)
     {
 //        if(empty($carClasses)){

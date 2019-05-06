@@ -12,7 +12,7 @@
                 </div>
             </div>
         </div>
-        <div>{{totalPrice}} $</div>
+        <div>{{cost}} $</div>
     </div>
 
 </template>
@@ -27,7 +27,7 @@
                 jobs: {},
                 checkJobs: {},
                 checkJobIds: [],
-                totalPrice: 0,
+                cost: 0,
             }
         },
         methods: {
@@ -42,14 +42,16 @@
                 let index = this.checkJobIds.indexOf(jobId);
                 if (index === -1) {
                     this.checkJobIds.push(jobId);
-                    this.totalPrice += job.price;
+                    this.cost += job.price;
                 } else {
                     this.checkJobIds.splice(index, 1);
-                    this.totalPrice -= job.price;
+                    this.cost -= job.price;
                 }
                 // console.log(this.checkJobIds);
+                this.$emit('return', this.cost, this.checkJobIds, this.checkJobs);
             },
             isChecked(jobId){
+                return this.checkJobIds.indexOf(jobId) !== -1
             }
         },
     }

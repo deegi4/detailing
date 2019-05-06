@@ -14,9 +14,24 @@
                 <h3>{{carClass.name}}</h3>
                 <price-list
                         :price="price"
+                        @return="returnPriceList"
                 ></price-list>
-                <date-list></date-list>
-                <button class="btn btn-primary">Register</button>
+                <date-list
+                        @return="returnDateList"
+                ></date-list>
+                Client
+                <input type="text"
+                       v-model="client"
+                >
+                Contact
+                <input type="text"
+                       v-model="contact"
+                >
+                <button class="btn btn-primary"
+                        @click="registerAppointment"
+
+                >
+                    Register</button>
             </div>
 
         </div>
@@ -40,6 +55,13 @@
                 price: [],
                 carClassId: 1,
                 carClass: [],
+                checkJobs: {},
+                checkJobIds: [],
+                cost: 0,
+                client: '',
+                contact: '',
+                date: '',
+                errors: [],
             }
         },
         mounted() {
@@ -51,13 +73,13 @@
                 window.axios.get('/appointments/price-list').then((response) => {
                     this.priceList = response.data;
                     this.price = this.priceList[this.carClassId];
-                    console.log(this.priceList);
+                    // console.log(this.priceList);
                 });
 
                 window.axios.get('/appointments/car-class-list').then((response) => {
                     this.carClassList = response.data;
                     this.carClass = this.carClassList[this.carClassId];
-                    console.log(this.carClassList);
+                    // console.log(this.carClassList);
                 });
             },
             selectCarClass: function (carClassId) {
@@ -65,6 +87,37 @@
                 this.carClass = this.carClassList[this.carClassId];
                 this.price = this.priceList[this.carClassId];
             },
+            returnPriceList(cost, checkJobIds, checkJobs){
+                this.cost = cost;
+                this.checkJobIds = checkJobIds;
+                this.checkJobs = checkJobs;
+            },
+            returnDateList(date){
+                this.date = date;
+            },
+            registerAppointment(){
+
+                debugger;
+                console.log(this.cost);
+                console.log(this.checkJobIds);
+                console.log(this.checkJobs);
+                console.log(this.client);
+                console.log(this.contact);
+                axios.post('/appointments/register', {
+
+                    date: this.date,
+                    cost: this.cost,
+                    checkJobIds: this.checkJobIds,
+                    checkJobs: this.checkJobs,
+                    client: this.client,
+                    contact: this.contact,
+                })
+                    .then(response => {})
+                    .catch(e => {
+                        this.errors.push(e)
+                    })
+
+            }
         }
     }
 </script>
