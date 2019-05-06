@@ -8,7 +8,7 @@
                         :data-disabled="hour.disable"
                         :data-date="hour.date"
                         :disabled="isDisabled(hour.disable)"
-                        :class="{active: isCheckDate(hour.date)}"
+                        :class="{active: isCheckDate(hour.date), disabled: isDisabled(hour.disable)}"
                         @click="checkDate(hour.date)"
                     >
                         {{hour.start_time}} - {{hour.end_time}}
@@ -61,5 +61,8 @@
 <style scoped>
     .active {
         background: gray;
+    }
+    .disabled {
+        background: lightgray;
     }
 </style>

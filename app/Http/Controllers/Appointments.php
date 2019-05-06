@@ -63,7 +63,11 @@ class Appointments extends Controller
             'toStringFormat' => 'jS \o\f F, Y g:i:s a',
             ]);
         $now = $carbon->nowWithSameTz();
-        $disable = 1;
+        $appointmentList = Appointment::all()->where('time', '>', $now);
+        $disableTimes = [];
+        foreach ($appointmentList as $appointment){
+            $disableTimes[] = $appointment->time;
+        }
         foreach ($days as $day){
             $dayData = [];
             $weekDayIndex = $carbon->isoWeekday();
@@ -74,13 +78,13 @@ class Appointments extends Controller
              $carbon->addHours($start_work_h);
             foreach ( $hours as $hour){
                 $hourData = [];
-                $hourData['disable'] = $disable;
-                $diffInHours = $carbon->diffInHours($now);
-                if($disable && !$diffInHours)  {
-                    $disable =  0;
-                }
+                $date = $carbon->toDateTimeString();
+                $dateTimestamp = $carbon->getTimestamp();
+                $nowTimestamp = $now->getTimestamp();
+                $isPastDate = $dateTimestamp < $nowTimestamp;
+                $hourData['disable'] = $isPastDate || in_array($date, $disableTimes);
+                $hourData['date'] = $date;
                 $hourData['hour'] = $hour;
-                $hourData['date'] = $carbon->toDateTimeString();
                 $hourData['start_time'] = $carbon->isoFormat('H:mm');
                 $carbon->addHours($period_h);
                 $hourData['end_time'] = $carbon->isoFormat('H:mm');
