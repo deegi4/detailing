@@ -13,7 +13,7 @@
 {{--    <example-component></example-component>--}}
 {{--v1--}}
     <appointments
-{{--            :car-classes="{{json_encode($carClasses)}}"--}}
+            :car-class-list="{{json_encode($carClassList)}}"
 {{--            :price-list="{{json_encode($priceList)}}"--}}
 {{--            :date-list="{{json_encode($dateList)}}"--}}
     ></appointments>

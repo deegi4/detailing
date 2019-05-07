@@ -19,7 +19,7 @@ Route::get('/', 'MainPage@show');
 
 Route::get('/appointments', 'Appointments@show');
 Route::get('/appointments/car-class-list', 'Appointments@getCarClassList');
-Route::get('/appointments/price-list/car-class/{id}', 'Appointments@getPrice');
+Route::get('/appointments/price-list/car-class-id/{id}', 'Appointments@getPrice');
 Route::get('/appointments/price-list/', 'Appointments@getPriceList');
 Route::get('/appointments/date-list', 'Appointments@getDateList');
 Route::post('/appointments/register', 'Appointments@register');

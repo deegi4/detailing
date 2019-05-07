@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Appointment;
 use App\CarClass;
+use App\Job;
 use App\ServiceType;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
@@ -13,7 +14,8 @@ class Appointments extends Controller
     //
     public function show()
     {
-//        $carClasses = CarClass::all();
+        $carClasses = CarClass::all();
+        $carClassList = $carClasses->getDictionary();
 //        $serviceTypes = ServiceType::all();
 //        $serviceTypes = $serviceTypes->load('jobs');
 //        foreach ($serviceTypes as $serviceType) {
@@ -25,7 +27,7 @@ class Appointments extends Controller
 //        $dateList = $this->getDateList($appointments);
 
         return view('appointments')->with([
-//            'carClasses' => $carClasses,
+            'carClassList' => $carClassList,
 //            'serviceTypes' => $serviceTypes,
 //            'priceList' => $priceList,
 //            'dateList' => $dateList,
@@ -100,13 +102,9 @@ class Appointments extends Controller
 
     public function getCarClassList()
     {
-         $CarClasses = CarClass::all();
-        $CarClassList = $CarClasses->getDictionary();
-//         $CarClassList = [];
-//         foreach ($CarClasses as $CarClass) {
-//             $CarClassList[$CarClass->id] = $CarClass;
-//         }
-         return  $CarClassList;
+         $carClasses = CarClass::all();
+         $carClassList = $carClasses->getDictionary();
+         return  $carClassList;
     }
     public function getPriceList()
     {
@@ -168,39 +166,29 @@ class Appointments extends Controller
         return $jobs;
 
     }
-    public function getPrice($carClassId)
+
+    public function getPrice(Request $request, $carClassId)
     {
-//        if(empty($carClasses)){
-//        $carClasses = CarClass::all();
-//        }
-//        if(empty($serviceTypes)){
+        $jobs = Job::with(['service'])->get()->where('car_class_id', $carClassId);
+        $carClassData = [];
+        $serviceTypeData = [];
         $serviceTypes = ServiceType::all();
-        $serviceTypes = $serviceTypes->load('jobs');
-        foreach ($serviceTypes as $serviceType) {
-            $serviceType->jobs->load('service');
-        }
-//        }
-//        $priceList = [];
-//        foreach ($carClasses as $carClass) {
-            $carClassData = [];
-//            $carClassData['id'] = $carClass->id;
-//            $carClassData['name'] = $carClass->name;
-            foreach ($serviceTypes as $serviceType) {
-                $serviceTypeData = [];
-                $serviceTypeData['id'] = $serviceType->id;
-                $serviceTypeData['name'] = $serviceType->name;
-                $jobs = $serviceType->jobs->where('car_class_id', $carClassId);
-                foreach ($jobs as $job) {
-                    $jobData = [];
-                    $jobData['id'] = $job->id;
-                    $jobData['price'] = $job->price;
-                    $jobData['name'] = $job->service->name;
-                    $serviceTypeData['jobs'][] = $jobData;
-                }
-                $carClassData['service_types'][] = $serviceTypeData;
+        $serviceTypeDict = $serviceTypes->getDictionary();
+        foreach ($jobs as $job) {
+            $service = $job->service;
+            $serviceTypeId = $service->service_type_id;
+            if(empty($serviceTypeData[$serviceTypeId]['id'])){
+                $serviceTypeData[$serviceTypeId]['id'] = $serviceTypeId;
+                $serviceTypeData[$serviceTypeId]['name'] = $serviceTypeDict[$serviceTypeId]->name;
+                $serviceTypeData[$serviceTypeId]['jobs'] = [];
             }
-//            $priceList[] = $carClassData;
-//        }
+            $jobData = [];
+            $jobData['id'] = $job->id;
+            $jobData['price'] = $job->price;
+            $jobData['name'] = $job->service->name;
+            $serviceTypeData[$serviceTypeId]['jobs'][] = $jobData;
+        }
+        $carClassData['service_types'] = $serviceTypeData;
         return $carClassData;
     }
 

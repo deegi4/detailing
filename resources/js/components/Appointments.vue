@@ -19,6 +19,9 @@
                         :price="price"
                         @return="returnPriceList"
                 ></price-list>
+                <div v-else>
+                    Loading...
+                </div>
                 <date-list
                         @return="returnDateList"
                 ></date-list>
@@ -39,6 +42,9 @@
             </div>
 
         </div>
+        <div v-else>
+            {{message}}
+        </div>
     </div>
 
 </template>
@@ -52,10 +58,14 @@
             PriceList: PriceList,
             DateList: DateList,
         },
+        props: [
+            'carClassList'
+        ],
         data() {
             return {
-                carClassList: [],
+                // carClassList: [],
                 priceList: [],
+                message: 'Select Car Class',
                 price: [],
                 carClassId: 0,
                 carClass: [],
@@ -77,26 +87,39 @@
         methods: {
             update: function () {
 
-                axios.get('/appointments/price-list').then((response) => {
-                    this.priceList = response.data;
-                    if(this.carClassId){
-                        this.price = this.priceList[this.carClassId];
-                    }
-                    // console.log(this.priceList);
-                });
+                // axios.get('/appointments/price-list').then((response) => {
+                //     this.priceList = response.data;
+                //     if(this.carClassId){
+                //         this.price = this.priceList[this.carClassId];
+                //     }
+                //     // console.log(this.priceList);
+                // });
 
-                axios.get('/appointments/car-class-list').then((response) => {
-                    this.carClassList = response.data;
-                    if(this.carClassId){
-                        this.carClass = this.carClassList[this.carClassId];
-                    }
-                    // console.log(this.carClassList);
-                });
+                if(this.carClassList[this.carClassId] !== undefined){
+                    this.carClass = this.carClassList[this.carClassId];
+                }
+                // axios.get('/appointments/car-class-list').then((response) => {
+                //     this.carClassList = response.data;
+                //     if(this.carClassId){
+                //         this.carClass = this.carClassList[this.carClassId];
+                //     }
+                //     // console.log(this.carClassList);
+                // });
             },
             selectCarClass: function (carClassId) {
                 this.carClassId = carClassId;
                 this.carClass = this.carClassList[this.carClassId];
-                this.price = this.priceList[this.carClassId];
+
+                if(this.priceList[this.carClassId] !== undefined){
+                    this.price = this.priceList[this.carClassId];
+                }else{
+                    this.price = [];
+                    axios.get('/appointments/price-list/car-class-id/'+this.carClassId).then((response) => {
+                        this.priceList[this.carClassId] = response.data;
+                        this.price = this.priceList[this.carClassId];
+                        // console.log(this.priceList);
+                    });
+                }
             },
             reset(){
                 this.carClassId = 0;
@@ -134,6 +157,7 @@
                 console.log(this.checkJobs);
                 console.log(this.client);
                 console.log(this.contact);
+                this.message = "Registering...";
                 axios.post('/appointments/register', {
 
                     date: this.date,
@@ -143,7 +167,9 @@
                     client: this.client,
                     contact: this.contact,
                 })
-                    .then(response => {})
+                    .then(response => {
+                        this.message = "Your appointment is registered!"
+                    })
                     .catch(e => {
                         this.errors.push(e)
                     });
