@@ -78,7 +78,7 @@
                 errors: [],
             }
         },
-        computed() {
+        computed: {
 
         },
         mounted() {

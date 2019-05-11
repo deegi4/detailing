@@ -24,6 +24,8 @@ Vue.component('example-component', require('./components/ExampleComponent.vue').
 Vue.component('appointments', require('./components/Appointments.vue').default);
 Vue.component('price-list', require('./components/PriceList.vue').default);
 Vue.component('date-list', require('./components/DateList.vue').default);
+Vue.component('thumbs-gallery-loop', require('./components/thumbsGalleryLoop.vue').default);
+Vue.component('loop-slider', require('./components/loopSlider.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

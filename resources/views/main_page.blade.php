@@ -1,4 +1,4 @@
-@extends('layout', ['title' => 'Main Page'])
+@extends('layouts.app', ['title' => 'Main Page'])
 
 @section('content')
 <div>

@@ -17,16 +17,16 @@ Route::get('/', function () {
 
 Route::get('/', 'MainPage@show');
 
-Route::get('/appointments', 'Appointments@show');
+Route::get('/appointments', 'Appointments@show')->name('appointments');
 Route::get('/appointments/car-class-list', 'Appointments@getCarClassList');
 Route::get('/appointments/price-list/car-class-id/{id}', 'Appointments@getPrice');
 Route::get('/appointments/price-list/', 'Appointments@getPriceList');
 Route::get('/appointments/date-list', 'Appointments@getDateList');
 Route::post('/appointments/register', 'Appointments@register');
 
-Route::get('/work_examples', 'WorkExamples@show');
+Route::get('/work_examples', 'WorkExamples@show')->name('work_examples');
 
-Route::get('/about_us', 'AboutUs@show');
+Route::get('/about_us', 'AboutUs@show')->name('about_us');
 
 Auth::routes();
 
