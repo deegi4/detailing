@@ -1,5 +1,7 @@
 <template>
-    <div>
+    <swiper :options="swiperOption">
+        <swiper-slide class="text">
+    <div class="content">
         <div class="card" v-for="service_type in price.service_types">
             <div class="card-header">{{service_type.name}}</div>
             <div  class="card-body" v-for="job in service_type.jobs">
@@ -12,9 +14,10 @@
                 </div>
             </div>
         </div>
-        <div>{{cost}} $</div>
     </div>
-
+        </swiper-slide>
+        <div class="swiper-scrollbar" slot="scrollbar"></div>
+    </swiper>
 </template>
 
 <script>
@@ -28,6 +31,15 @@
                 checkJobs: {},
                 checkJobIds: [],
                 cost: 0,
+                swiperOption: {
+                    direction: 'vertical',
+                    slidesPerView: 'auto',
+                    freeMode: true,
+                    scrollbar: {
+                        el: '.swiper-scrollbar'
+                    },
+                    mousewheel: true
+                }
             }
         },
         methods: {
@@ -57,8 +69,37 @@
     }
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
     .active {
         background: gray;
+    }
+    .swiper-container {
+        // TODO height auto from props
+        height: 533px;
+        width: 100%;
+    }
+    .swiper-slide.text {
+        font-size: 18px!important;
+        text-align: left!important;
+        height: auto;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+        padding: 30px;
+        > .content {
+            > .title {
+                margin: 0;
+                text-align: center;
+                margin-bottom: .75em;
+            }
+            > p,
+            blockquote {
+                line-height: 2;
+                text-indent: 2em;
+            }
+            blockquote {
+                background-color: #ddd;
+                margin-left: 2em;
+            }
+        }
     }
 </style>

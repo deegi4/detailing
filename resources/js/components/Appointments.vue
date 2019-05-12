@@ -8,29 +8,30 @@
                 <a :href="'#carClass'+carClassItem.id" data-toggle="tab">{{carClassItem.name}}</a>
             </li>
         </ul>
-        <div class="tab-content"
+        <div class="tab-content container-fluid"
              v-if="carClassId > 0"
         >
 <!--            <div class="tab-pane" :id="'carClass'+carClass.id" v-for="carClass in priceList">-->
-            <div>
-                <h3>{{carClass.name}}</h3>
-                <price-list
-                        v-if="price.service_types !== undefined"
-                        :price="price"
-                        @return="returnPriceList"
-                ></price-list>
-                <div v-else>
-                    Loading...
+            <div class="row">
+
+                <div class="col-5">
+                    <h3>{{carClass.name}} Cost: {{cost}} $</h3>
+                    <price-list
+                            v-if="price.service_types !== undefined"
+                            :price="price"
+                            @return="returnPriceList"
+                    ></price-list>
+                    <div v-else>
+                        Loading...
+                    </div>
                 </div>
-                <date-list
-                        @return="returnDateList"
-                ></date-list>
-                    Client:
-                    <input type="text"
+                <div class="col-7">
+                    <label for="client">Client:</label>
+                    <input id="client" type="text"
                            v-model="client"
                     >
-                    Contact:
-                    <input type="text"
+                    <label for="contact">Contact:</label>
+                    <input id="contact" type="text"
                            v-model="contact"
                     >
                     <button class="btn btn-primary"
@@ -39,6 +40,11 @@
                     >
                         Register
                     </button>
+                    <date-list
+                            @return="returnDateList"
+                    ></date-list>
+                </div>
+
             </div>
 
         </div>

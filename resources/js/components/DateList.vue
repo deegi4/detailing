@@ -1,7 +1,11 @@
 <template>
-    <div class="container">
-        <div class="row-14 week justify-content-center">
-            <div class="col-2" v-for="day in dateList">
+    <div>
+        <swiper :options="swiperOption">
+            <div class="swiper-scrollbar" slot="scrollbar"></div>
+            <swiper-slide class=""
+                          v-for="(day, key) in dateList"
+                          :key="key"
+            >
                 <div class="pt-4">{{day.week_day}}</div>
                 <ul class="list-group" v-for="hour in day.hours">
                     <li class="list-group-item list-group-item-action" data-entity="hour"
@@ -11,11 +15,12 @@
                         :class="{active: isCheckDate(hour.date), disabled: isDisabled(hour.disable)}"
                         @click="checkDate(hour.date)"
                     >
-                        {{hour.start_time}} - {{hour.end_time}}
+                        {{hour.start_time}}
+<!--                        - {{hour.end_time}}-->
                     </li>
                 </ul>
-            </div>
-        </div>
+            </swiper-slide>
+        </swiper>
     </div>
 </template>
 
@@ -28,6 +33,17 @@
                 weekIndex: 0,
                 day: null,
                 hour: null,
+                swiperOption: {
+                    slidesPerView: 7,
+                    spaceBetween: 10,
+                    slidesPerGroup: 7,
+                    loop: true,
+                    loopFillGroupWithBlank: true,
+                    scrollbar: {
+                        el: '.swiper-scrollbar',
+                        // hide: true
+                    },
+                },
             }
         },
         mounted() {
@@ -64,5 +80,8 @@
     }
     .disabled {
         background: lightgray;
+    }
+    .swiper-scrollbar{
+        top: 3px;
     }
 </style>
