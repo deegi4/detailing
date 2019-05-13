@@ -1,23 +1,26 @@
 <template>
-    <swiper :options="swiperOption">
-        <swiper-slide class="text">
-    <div class="content">
-        <div class="card" v-for="service_type in price.service_types">
-            <div class="card-header">{{service_type.name}}</div>
-            <div  class="card-body" v-for="job in service_type.jobs">
-                <div data-entity="job"
-                     :class="{active: isChecked(job.id)}"
-                     :data-id="job.id"
-                     @click="checkJob(job)"
+    <div>
+
+        <swiper :options="swiperOption">
+            <swiper-slide class="text">
+        <div class="content">
+            <div class="mt-4 card" v-for="service_type in price.service_types">
+                <div class="card-header">{{service_type.name}}</div>
+                <div  class="card-body"
+                      v-for="job in service_type.jobs"
+                      :class="{selected: isChecked(job.id)}"
+                      :data-id="job.id"
+                      @click="checkJob(job)"
                 >
                     {{job.name}} = {{job.price}} $
                 </div>
             </div>
         </div>
+            </swiper-slide>
+            <div class="swiper-scrollbar" slot="scrollbar"></div>
+        </swiper>
+
     </div>
-        </swiper-slide>
-        <div class="swiper-scrollbar" slot="scrollbar"></div>
-    </swiper>
 </template>
 
 <script>
@@ -64,19 +67,23 @@
             },
             isChecked(jobId){
                 return this.checkJobIds.indexOf(jobId) !== -1
+            },
+            isChecked(jobId){
+                return this.checkJobIds.indexOf(jobId) !== -1
             }
         },
     }
 </script>
 
 <style lang="scss" scoped>
-    .active {
-        background: gray;
+    .selected {
+        background: #545b62;
+        color: white;
+        border: lightgray 1px;
     }
     .swiper-container {
         // TODO height auto from props
-        height: 533px;
-        width: 100%;
+        height: 414px;
     }
     .swiper-slide.text {
         font-size: 18px!important;
@@ -84,7 +91,7 @@
         height: auto;
         -webkit-box-sizing: border-box;
         box-sizing: border-box;
-        padding: 30px;
+        padding: 0 30px;
         > .content {
             > .title {
                 margin: 0;

@@ -67,16 +67,37 @@ class Appointments extends Controller
         $now = $carbon->nowWithSameTz();
         $appointmentList = Appointment::all()->where('time', '>', $now);
         $disableTimes = [];
+        $weekMap = [
+            0 => 'SU',
+            1 => 'MO',
+            2 => 'TU',
+            3 => 'WE',
+            4 => 'TH',
+            5 => 'FR',
+            6 => 'SA',
+        ];
+        $weekMapRu = [
+            0 => 'Вс',
+            1 => 'Пн',
+            2 => 'Вт',
+            3 => 'Ср',
+            4 => 'Чт',
+            5 => 'Пт',
+            6 => 'Сб',
+        ];
+
         foreach ($appointmentList as $appointment){
             $disableTimes[] = $appointment->time;
         }
         foreach ($days as $day){
             $dayData = [];
             $weekDayIndex = $carbon->isoWeekday();
-            $weekDay = $carbon->isoFormat('dddd, D.MM');
+            $dayOfTheWeek = $carbon->dayOfWeek;
+            $weekDay = $weekMapRu[$dayOfTheWeek];
+            $dayMonth = $carbon->isoFormat('D.MM');
             $dayData['week_number'] = $weekDayIndex;
             $dayData['day'] = $day;
-            $dayData['week_day'] = $weekDay;
+            $dayData['week_day'] = $weekDay.' '.$dayMonth;
              $carbon->addHours($start_work_h);
             foreach ( $hours as $hour){
                 $hourData = [];

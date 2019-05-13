@@ -6,19 +6,24 @@
                           v-for="(day, key) in dateList"
                           :key="key"
             >
-                <div class="pt-4">{{day.week_day}}</div>
-                <ul class="list-group" v-for="hour in day.hours">
-                    <li class="list-group-item list-group-item-action" data-entity="hour"
-                        :data-disabled="hour.disable"
-                        :data-date="hour.date"
-                        :disabled="isDisabled(hour.disable)"
-                        :class="{active: isCheckDate(hour.date), disabled: isDisabled(hour.disable)}"
-                        @click="checkDate(hour.date)"
-                    >
-                        {{hour.start_time}}
-<!--                        - {{hour.end_time}}-->
-                    </li>
-                </ul>
+
+                <div class="date pt-3">{{day.week_day}}</div>
+                <hr class="my-1 mx-4">
+                <div class="list-group" v-for="hour in day.hours">
+                    <div class="mx-2 my-1 date">
+                        <div class="px-3 py-1 list-group-item list-group-item-action" data-entity="hour"
+                            :data-disabled="hour.disable"
+                            :data-date="hour.date"
+                            :disabled="isDisabled(hour.disable)"
+                            :class="{selected: isCheckDate(hour.date), disabled: isDisabled(hour.disable)}"
+                            @click="checkDate(hour.date)"
+                        >
+                            {{hour.start_time}}
+                            <!--                        - {{hour.end_time}}-->
+                        </div>
+                    </div>
+
+                </div>
             </swiper-slide>
         </swiper>
     </div>
@@ -35,7 +40,7 @@
                 hour: null,
                 swiperOption: {
                     slidesPerView: 7,
-                    spaceBetween: 10,
+                    spaceBetween: 0,
                     slidesPerGroup: 7,
                     loop: true,
                     loopFillGroupWithBlank: true,
@@ -75,13 +80,18 @@
 </script>
 
 <style scoped>
-    .active {
-        background: gray;
+    .selected {
+        background: #545b62;
+        color: white;
+        border: lightgray 1px;
     }
     .disabled {
         background: lightgray;
     }
     .swiper-scrollbar{
         top: 3px;
+    }
+    .swiper-container {
+        text-align: center;
     }
 </style>

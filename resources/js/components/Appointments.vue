@@ -1,58 +1,58 @@
 <template>
-    <div class="tabbable">
-        <ul class="nav nav-tabs">
-            <li v-for="carClassItem in carClassList"
-                :class="{'active': carClassId == carClassItem.id}"
-                @click="selectCarClass(carClassItem.id)"
-            >
-                <a :href="'#carClass'+carClassItem.id" data-toggle="tab">{{carClassItem.name}}</a>
-            </li>
-        </ul>
-        <div class="tab-content container-fluid"
-             v-if="carClassId > 0"
-        >
-<!--            <div class="tab-pane" :id="'carClass'+carClass.id" v-for="carClass in priceList">-->
-            <div class="row">
-
-                <div class="col-5">
-                    <h3>{{carClass.name}} Cost: {{cost}} $</h3>
-                    <price-list
-                            v-if="price.service_types !== undefined"
-                            :price="price"
-                            @return="returnPriceList"
-                    ></price-list>
-                    <div v-else>
-                        Loading...
-                    </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-5">
+                <div class="mb-3 input-group input-group-lg">
+                    <input v-model="client" type="text" class="form-control" placeholder="Client" aria-label="Client">
+                    <input v-model="contact" type="text" class="form-control" placeholder="Contact" aria-label="Contact">
                 </div>
-                <div class="col-7">
-                    <label for="client">Client:</label>
-                    <input id="client" type="text"
-                           v-model="client"
+                <div class="m-1 lead"  v-if="carClassId == 0">
+                    Select Car Class
+                </div>
+                <div class="m-1 lead" v-else-if="checkJobIds.length == 0">
+                    Select Jobs
+                </div>
+                <div class="m-1 lead" v-else>
+                    Cost: {{cost}} $
+                </div>
+
+                <div class="btn-block btn-group">
+                    <button type="button" class="btn btn-secondary "
+                            v-for="carClassItem in carClassList"
+                            :class="{'active': carClassId == carClassItem.id}"
+                            @click="selectCarClass(carClassItem.id)"
                     >
-                    <label for="contact">Contact:</label>
-                    <input id="contact" type="text"
-                           v-model="contact"
-                    >
-                    <button class="btn btn-primary"
-                            :disabled="isDisabledRegister()"
-                            @click="registerAppointment"
-                    >
-                        Register
+                      {{carClassItem.name}}
                     </button>
-                    <date-list
-                            @return="returnDateList"
-                    ></date-list>
                 </div>
-
+                <price-list
+                        v-if="price.service_types !== undefined"
+                        :price="price"
+                        @return="returnPriceList"
+                ></price-list>
+                <div class="m-1 lead" v-else-if="carClassId > 0">
+                    Loading...
+                </div>
             </div>
-
-        </div>
-        <div v-else>
-            {{message}}
+            <div class="col-7">
+                <button class="mb-3 btn btn-block btn-secondary btn-lg"
+                        :disabled="isDisabledRegister()"
+                        @click="registerAppointment"
+                >
+                    Register
+                </button>
+                <div class="m-1 lead" v-if="date.length == 0">
+                    Select time
+                </div>
+                <div class="m-1 lead" v-else>
+                    {{date}}
+                </div>
+                <date-list
+                        @return="returnDateList"
+                ></date-list>
+            </div>
         </div>
     </div>
-
 </template>
 
 <script>
@@ -71,7 +71,7 @@
             return {
                 // carClassList: [],
                 priceList: [],
-                message: 'Select Car Class',
+                message: 'Fill contact information ',
                 price: [],
                 carClassId: 0,
                 carClass: [],
@@ -138,6 +138,13 @@
                 this.contact = '';
                 this.date = '';
             },
+            showRegister(){
+                // return !this.isDisabledRegister();
+                return  this.date.length != 0 &&
+                    this.client.length != 0 &&
+                    this.contact.length != 0 &&
+                    this.checkJobIds.length != 0;
+            },
             isDisabledRegister(){
                 debugger;
                 let isDisabledRegister =
@@ -154,6 +161,12 @@
             },
             returnDateList(date){
                 this.date = date;
+                // if(this.client == '' || this.contact == ''){
+                //     this.message = ''
+                // }else{
+                //     this.message = date;
+                // }
+
             },
             registerAppointment(){
 
@@ -185,3 +198,44 @@
         }
     }
 </script>
+
+<style lang="scss" scoped>
+    /*.justify-content-evenly {*/
+    /*    justify-content: evenly !important;*/
+    /*}*/
+    /*.tab{*/
+    /*    height: 10%;*/
+    /*}*/
+    /*.tab {*/
+    /*    min-width: 88px;*/
+    /*    min-height: 36px;*/
+    /*    margin: 6px 8px;*/
+    /*    padding: 0 16px;*/
+    /*    display: inline-block;*/
+    /*    position: relative;*/
+    /*    overflow: hidden;*/
+    /*    -webkit-user-select: none;*/
+    /*    -moz-user-select: none;*/
+    /*    -ms-user-select: none;*/
+    /*    user-select: none;*/
+    /*    cursor: pointer;*/
+    /*    background: none;*/
+    /*    border: 0;*/
+    /*    border-radius: 2px;*/
+    /*    transition: all .4s cubic-bezier(.25,.8,.25,1);*/
+    /*    color: currentColor;*/
+    /*    font-family: inherit;*/
+    /*    font-size: 14px;*/
+    /*    font-style: inherit;*/
+    /*    font-variant: inherit;*/
+    /*    font-weight: 500;*/
+    /*    letter-spacing: inherit;*/
+    /*    line-height: 36px;*/
+    /*    text-align: center;*/
+    /*    text-transform: uppercase;*/
+    /*    text-decoration: none;*/
+    /*    vertical-align: top;*/
+    /*    white-space: nowrap;*/
+    /*}*/
+</style>
+
