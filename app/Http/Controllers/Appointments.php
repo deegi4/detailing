@@ -24,13 +24,13 @@ class Appointments extends Controller
 //        $priceList = $this->getPriceList($carClasses, $serviceTypes);
 //
 //        $appointments = Appointment::all();
-//        $dateList = $this->getDateList($appointments);
+        $dateList = $this->getDateList();
 
         return view('appointments')->with([
             'carClassList' => $carClassList,
 //            'serviceTypes' => $serviceTypes,
 //            'priceList' => $priceList,
-//            'dateList' => $dateList,
+            'dateList' => $dateList,
             ]);
     }
     public function getDateList($appointments = [])

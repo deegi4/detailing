@@ -48,6 +48,7 @@
                     {{date}}
                 </div>
                 <date-list
+                        :dates="dateList"
                         @return="returnDateList"
                 ></date-list>
             </div>
@@ -65,7 +66,8 @@
             DateList: DateList,
         },
         props: [
-            'carClassList'
+            'carClassList',
+            'dateList',
         ],
         data() {
             return {

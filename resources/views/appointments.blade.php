@@ -14,6 +14,7 @@
 {{--v1--}}
     <appointments
             :car-class-list="{{json_encode($carClassList)}}"
+            :date-list="{{json_encode($dateList)}}"
 {{--            :price-list="{{json_encode($priceList)}}"--}}
 {{--            :date-list="{{json_encode($dateList)}}"--}}
     ></appointments>

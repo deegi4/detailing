@@ -31,6 +31,9 @@
 
 <script>
     export default {
+        props: [
+            'dates',
+        ],
         data() {
             return {
                 dateList: [],
@@ -56,12 +59,12 @@
         },
         methods: {
             update: function () {
-                window.axios.get('/appointments/date-list').then((response) => {
-                    debugger;
-
-                    this.dateList = response.data;
-                    // console.log(this.dateList);
-                });
+            //     window.axios.get('/appointments/date-list').then((response) => {
+            //         debugger;
+            //
+                    this.dateList = this.dates;
+            //         // console.log(this.dateList);
+            //     });
             },
             isDisabled(disable){
                 return ( disable == 1 );
