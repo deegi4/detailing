@@ -12,7 +12,7 @@ class WorkExamples extends Controller
         $images = [];
 
 
-        $dirpath = 'img';
+        $dirpath = 'img/examples';
         $cdir = scandir($dirpath);
         foreach ($cdir as $value) {
             // если это "не точки" и не директория

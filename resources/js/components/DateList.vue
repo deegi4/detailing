@@ -59,12 +59,8 @@
         },
         methods: {
             update: function () {
-            //     window.axios.get('/appointments/date-list').then((response) => {
-            //         debugger;
-            //
+
                     this.dateList = this.dates;
-            //         // console.log(this.dateList);
-            //     });
             },
             isDisabled(disable){
                 return ( disable == 1 );

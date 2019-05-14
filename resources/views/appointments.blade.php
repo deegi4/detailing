@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Appointments'])
+@extends('layouts.app', ['title' => 'Appointments', 'id' => 'appointments'])
 
 @section('content')
 <div>

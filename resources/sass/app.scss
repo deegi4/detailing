@@ -29,3 +29,30 @@ $grid-columns: 14;   // This is where you define the number of columns you need/
     }
   }
 }
+
+#main {
+  height: 600px !important;
+  max-height: 550px;
+  text-align: center;
+  //background-color: #70FFBD;
+  background-repeat: no-repeat;
+  background-image: url(/img/main.jpg);
+  //background-size: 40% !important;
+  background-position: 100% 110%;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+  //z-index: 20;
+}
+header{
+  font-size: 2rem;
+}
+#main header {
+  text-align: center;
+  font-size: 5rem;
+  color: white !important;
+}
+.slogan{
+  font-style: oblique;
+  font-size: 2rem;
+  color: white !important;
+}

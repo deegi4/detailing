@@ -80,12 +80,16 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main id="@if($id){{$id}}@endif" class="py-4">
             @if($title)
-            <h3>{{$title}}</h3>
+            <header class="px-4 pb-4">{{$title}}</header>
             @endif
             @yield('content')
         </main>
+    </div>
+    <div id="no-vue">
+        @yield('no-vue')
+
     </div>
 </body>
 </html>

@@ -9,6 +9,6 @@ class AboutUs extends Controller
     //
     public function show()
     {
-        return view('main_page');
+        return view('about_us');
     }
 }

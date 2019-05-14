@@ -11874,3 +11874,30 @@ a.text-dark:focus {
   }
 }
 
+#main {
+  height: 600px !important;
+  max-height: 550px;
+  text-align: center;
+  background-repeat: no-repeat;
+  background-image: url(/img/main.jpg);
+  background-position: 100% 110%;
+  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+}
+
+header {
+  font-size: 2rem;
+}
+
+#main header {
+  text-align: center;
+  font-size: 5rem;
+  color: white !important;
+}
+
+.slogan {
+  font-style: oblique;
+  font-size: 2rem;
+  color: white !important;
+}
+
