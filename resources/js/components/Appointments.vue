@@ -3,17 +3,17 @@
         <div class="row">
             <div class="col-5">
                 <div class="mb-3 input-group input-group-lg">
-                    <input v-model="client" type="text" class="form-control" placeholder="Client" aria-label="Client">
-                    <input v-model="contact" type="text" class="form-control" placeholder="Contact" aria-label="Contact">
+                    <input v-model="client" type="text" class="form-control" placeholder="Имя" aria-label="Client">
+                    <input v-model="contact" type="text" class="form-control" placeholder="Контакт" aria-label="Contact">
                 </div>
                 <div class="m-1 lead"  v-if="carClassId == 0">
-                    Select Car Class
+                    Выберите класс автомобиля
                 </div>
                 <div class="m-1 lead" v-else-if="checkJobIds.length == 0">
-                    Select Jobs
+                    Выберите услуги
                 </div>
                 <div class="m-1 lead" v-else>
-                    Cost: {{cost}} $
+                    Стоимость: {{cost}} ₽
                 </div>
 
                 <div class="btn-block btn-group">
@@ -31,7 +31,7 @@
                         @return="returnPriceList"
                 ></price-list>
                 <div class="m-1 lead" v-else-if="carClassId > 0">
-                    Loading...
+                    Загрузка...
                 </div>
             </div>
             <div class="col-7">
@@ -39,10 +39,10 @@
                         :disabled="isDisabledRegister()"
                         @click="registerAppointment"
                 >
-                    Register
+                    Записаться на приём
                 </button>
                 <div class="m-1 lead" v-if="date.length == 0">
-                    Select time
+                    Выберите время
                 </div>
                 <div class="m-1 lead" v-else>
                     {{date}}
@@ -73,7 +73,7 @@
             return {
                 // carClassList: [],
                 priceList: [],
-                message: 'Fill contact information ',
+                message: 'Заполните контактную информацию',
                 price: [],
                 carClassId: 0,
                 carClass: [],
@@ -178,7 +178,7 @@
                 console.log(this.checkJobs);
                 console.log(this.client);
                 console.log(this.contact);
-                this.message = "Registering...";
+                this.message = "Оформляем запись на приём...";
                 axios.post('/appointments/register', {
 
                     date: this.date,
@@ -189,7 +189,7 @@
                     contact: this.contact,
                 })
                     .then(response => {
-                        this.message = "Your appointment is registered!"
+                        this.message = "Запись на приём оформлена!"
                     })
                     .catch(e => {
                         this.errors.push(e)

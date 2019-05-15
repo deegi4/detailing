@@ -34,17 +34,18 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('appointments') }}">{{ __('Appointments') }}</a>
+                            <a class="nav-link" href="{{ route('appointments') }}">Запись на приём</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('work_examples') }}">{{ __('Work Examples') }}</a>
+                            <a class="nav-link" href="{{ route('work_examples') }}">Примеры работ</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('about_us') }}">{{ __('About Us') }}</a>
+                            <a class="nav-link" href="{{ route('about_us') }}">О нас</a>
                         </li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
+                    {{--
                     <ul class="navbar-nav ml-auto">
                         <!-- Authentication Links -->
                         @guest
@@ -76,6 +77,7 @@
                             </li>
                         @endguest
                     </ul>
+                    --}}
                 </div>
             </div>
         </nav>

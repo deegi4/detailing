@@ -12,7 +12,7 @@
                       :data-id="job.id"
                       @click="checkJob(job)"
                 >
-                    {{job.name}} = {{job.price}} $
+                    {{job.name}} = {{job.price}} ₽
                 </div>
             </div>
         </div>

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'Detailing', 'id' => 'main'])
+@extends('layouts.app', ['title' => 'Детейлинг', 'id' => 'main'])
 
 @section('content')
 <div class="container-fluid">
@@ -8,7 +8,7 @@
      салон чистым.
  </div>
     <a class="m-5 btn btn-secondary btn-lg" href="{{ route('appointments') }}">
-        {{ __('Appointments') }}
+        Запись на приём
     </a>
 </div>
 @endsection

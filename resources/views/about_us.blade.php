@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => 'About Us', 'id' => 'about'])
+@extends('layouts.app', ['title' => 'О нас', 'id' => 'about'])
 
 @section('no-vue')
 <div>
