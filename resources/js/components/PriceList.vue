@@ -6,7 +6,7 @@
         <div class="content">
             <div class="mt-4 card" v-for="service_type in price.service_types">
                 <div class="card-header">{{service_type.name}}</div>
-                <div  class="card-body"
+                <div  class="pointer card-body"
                       v-for="job in service_type.jobs"
                       :class="{selected: isChecked(job.id)}"
                       :data-id="job.id"

@@ -11,7 +11,7 @@
                 <hr class="my-1 mx-4">
                 <div class="list-group" v-for="hour in day.hours">
                     <div class="mx-2 my-1 date">
-                        <div class="px-3 py-1 list-group-item list-group-item-action" data-entity="hour"
+                        <div class="px-3 py-1 pointer list-group-item list-group-item-action" data-entity="hour"
                             :data-disabled="hour.disable"
                             :data-date="hour.date"
                             :disabled="isDisabled(hour.disable)"

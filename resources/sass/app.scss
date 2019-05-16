@@ -45,9 +45,9 @@ $grid-columns: 14;   // This is where you define the number of columns you need/
 }
 header{
   font-size: 2rem;
+  text-align: center;
 }
 #main header {
-  text-align: center;
   font-size: 5rem;
   color: white !important;
 }
@@ -55,4 +55,8 @@ header{
   font-style: oblique;
   font-size: 2rem;
   color: white !important;
+}
+
+.pointer{
+  cursor: pointer;
 }
