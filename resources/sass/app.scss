@@ -1,7 +1,8 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
+//@import url('https://fonts.googleapis.com/css?family=Comfortaa|Kosugi+Maru|Lobster|M+PLUS+1p|Montserrat+Alternates|Pacifico|Poiret+One|Press+Start+2P|Roboto|Roboto+Slab|Rubik|Rubik+Mono+One|Stalinist+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates|Pacifico|Rubik|Rubik+Mono+One&display=swap');
 // Variables
 @import 'variables';
 
@@ -44,15 +45,49 @@ $grid-columns: 14;   // This is where you define the number of columns you need/
   //z-index: 20;
 }
 header{
-  font-size: 2rem;
+  //font-size: 2rem;
+}
+.navbar-brand{
+  //font-size: 2rem;
+  //font-size: 18px
+  //font-size: 28px;
+  color: #212529 !important;
+  font-family: 'Rubik Mono One', cursive;
+  //text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+
+}
+.navbar-brand:hover{
+  //font-size: 2rem;
+  //font-size: 18px
+  //font-size: 28px;
+  color: white !important;
+  font-family: 'Rubik Mono One', cursive;
+  text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+  //text-shadow: none;
 }
 #main header {
+  font-family: 'Rubik Mono One', cursive;
+  //color: #FFFFFF;
+  //background: #FFFFFF;
+  text-shadow: $shadow-size-header $shadow-size-header 0 $shadow-color-base, $shadow-size-header $shadow-size-header-inverse 0 $shadow-color-base, $shadow-size-header-inverse $shadow-size-header 0 $shadow-color-base, $shadow-size-header-inverse $shadow-size-header-inverse 0 $shadow-color-base, $shadow-size-header 0px 0 $shadow-color-base, 0px $shadow-size-header 0 $shadow-color-base, $shadow-size-header-inverse 0px 0 $shadow-color-base, 0px $shadow-size-header-inverse 0 $shadow-color-base;
   text-align: center;
   font-size: 5rem;
   color: white !important;
+  /*
+  color: #FFFFFF;
+  !* background: #005DFF; *!
+  text-shadow: -5px 5px 0px #cdd2d5, -10px 10px 0px #808d93, -15px 15px 0px #202c2d;
+  //color: #202c2d;
+  */
+
 }
 .slogan{
+  font-family: 'Pacifico', cursive;
   font-style: oblique;
   font-size: 2rem;
   color: white !important;
+  text-shadow: $shadow-color-base $shadow-size-base $shadow-size-base 0;
+  //text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+  //text-shadow: $shadow-size-base $shadow-size-base 0 $shadow-color-base, $shadow-size-base $shadow-size-base-inverse 0 $shadow-color-base, $shadow-size-base-inverse $shadow-size-base 0 $shadow-color-base, $shadow-size-base-inverse $shadow-size-base-inverse 0 $shadow-color-base, $shadow-size-base 0px 0 $shadow-color-base, 0px $shadow-size-base 0 $shadow-color-base, $shadow-size-base-inverse 0px 0 $shadow-color-base, 0px $shadow-size-base-inverse 0 $shadow-color-base;
+
 }
