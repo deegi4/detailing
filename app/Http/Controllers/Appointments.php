@@ -65,6 +65,10 @@ class Appointments extends Controller
             'toStringFormat' => 'jS \o\f F, Y g:i:s a',
             ]);
         $now = $carbon->nowWithSameTz();
+        $now_h = $now->isoFormat('H');
+        if($now_h >= $end_work_h){
+            $carbon->addHours(24);
+        }
         $appointmentList = Appointment::all()->where('time', '>', $now);
         $disableTimes = [];
         $weekMap = [
