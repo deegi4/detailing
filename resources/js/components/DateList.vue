@@ -82,10 +82,9 @@
     .selected {
         background: #545b62;
         color: white;
-        border: lightgray 1px;
     }
     .disabled {
-        background: lightgray;
+        background: #cdd6de;
     }
     .swiper-scrollbar{
         top: 3px;

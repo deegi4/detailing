@@ -11874,9 +11874,12 @@ a.text-dark:focus {
   }
 }
 
+main {
+  background-color: #cdd6de;
+}
+
 #main {
   height: 600px !important;
-  max-height: 550px;
   text-align: center;
   background-repeat: no-repeat;
   background-image: url(/img/main.jpg);
@@ -11916,5 +11919,10 @@ a.text-dark:focus {
   font-size: 2rem;
   color: white !important;
   text-shadow: #212529 1px 1px 0;
+}
+
+footer .navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.04);
 }
 
