@@ -108,7 +108,7 @@
                     {{--            </button>--}}
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <label class="navbar-light mr-auto">©2019 Техподдержка: admin@detailing.ml </label>
+                        <label class="navbar-light mr-auto">©2019 www.detailing.ml</label>
                         <a class="navbar-brand ml-auto" href="{{ url('/') }}">
                             {{ config('app.name', 'Laravel') }}
                         </a>
