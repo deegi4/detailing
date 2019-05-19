@@ -1,5 +1,5 @@
 <template>
-        <div :style="'height: '+sliderHeight+'px'">
+        <div class="container" :style="'height: '+sliderHeight+'px'">
             <!-- swiper1 -->
             <swiper :options="swiperOptionTop" class="gallery-top" ref="swiperTop">
                 <swiper-slide
@@ -10,8 +10,8 @@
                 >
                 </swiper-slide>
 
-                <div class="swiper-button-next swiper-button-white" slot="button-next"></div>
-                <div class="swiper-button-prev swiper-button-white" slot="button-prev"></div>
+                <div class="swiper-button-next swiper-button-white" slot="button-next">></div>
+                <div class="swiper-button-prev swiper-button-white" slot="button-prev"><</div>
             </swiper>
             <!-- swiper2 Thumbs -->
             <swiper :options="swiperOptionThumbs" class="gallery-thumbs" ref="swiperThumbs">
@@ -101,7 +101,18 @@
 
 <style lang="scss" scoped>
     .swiper-container {
-        background-color: #000;
+        /*padding: 10px 0;*/
+        /*background-color: #212529;*/
+    }
+    .swiper-button-white{
+        background: none;
+        font-family: 'Rubik Mono One', cursive;
+        //color: #FFFFFF;
+        //background: #FFFFFF;
+        //text-shadow: $shadow-size-header $shadow-size-header 0 $shadow-color-base, $shadow-size-header $shadow-size-header-inverse 0 $shadow-color-base, $shadow-size-header-inverse $shadow-size-header 0 $shadow-color-base, $shadow-size-header-inverse $shadow-size-header-inverse 0 $shadow-color-base, $shadow-size-header 0px 0 $shadow-color-base, 0px $shadow-size-header 0 $shadow-color-base, $shadow-size-header-inverse 0px 0 $shadow-color-base, 0px $shadow-size-header-inverse 0 $shadow-color-base;
+        text-align: center;
+        font-size: 2rem;
+        color: #212529;
     }
     .swiper-slide {
         background-size: contain;

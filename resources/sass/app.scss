@@ -34,6 +34,7 @@ main{
   background-color: #cdd6de;
   //background-color: #9aa6b1;
 }
+
 #main {
   height: 600px !important;
   //max-height: 550px;
@@ -48,26 +49,11 @@ main{
   //z-index: 20;
 }
 header{
-  //font-size: 2rem;
-}
-.navbar-brand{
-  //font-size: 2rem;
-  //font-size: 18px
-  //font-size: 28px;
-  color: #212529 !important;
   font-family: 'Rubik Mono One', cursive;
-  //text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+  font-size: 2rem;
+  text-align: center;
+}
 
-}
-.navbar-brand:hover{
-  //font-size: 2rem;
-  //font-size: 18px
-  //font-size: 28px;
-  color: white !important;
-  font-family: 'Rubik Mono One', cursive;
-  text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
-  //text-shadow: none;
-}
 #main header {
   font-family: 'Rubik Mono One', cursive;
   //color: #FFFFFF;
@@ -93,6 +79,27 @@ header{
   //text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
   //text-shadow: $shadow-size-base $shadow-size-base 0 $shadow-color-base, $shadow-size-base $shadow-size-base-inverse 0 $shadow-color-base, $shadow-size-base-inverse $shadow-size-base 0 $shadow-color-base, $shadow-size-base-inverse $shadow-size-base-inverse 0 $shadow-color-base, $shadow-size-base 0px 0 $shadow-color-base, 0px $shadow-size-base 0 $shadow-color-base, $shadow-size-base-inverse 0px 0 $shadow-color-base, 0px $shadow-size-base-inverse 0 $shadow-color-base;
 
+}
+
+.navbar-brand{
+  //font-size: 2rem;
+  //font-size: 18px
+  //font-size: 28px;
+  font-family: 'Rubik Mono One', cursive;
+  //color: #212529 !important;
+  color: white !important;
+  text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+
+}
+.navbar-brand:hover{
+  //font-size: 2rem;
+  //font-size: 18px
+  //font-size: 28px;
+  font-family: 'Rubik Mono One', cursive;
+  //color: white !important;
+  //text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+  color: #212529 !important;
+  text-shadow: none;
 }
 
 footer .navbar-laravel {

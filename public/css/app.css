@@ -11888,15 +11888,10 @@ main {
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
 }
 
-.navbar-brand {
-  color: #212529 !important;
+header {
   font-family: "Rubik Mono One", cursive;
-}
-
-.navbar-brand:hover {
-  color: white !important;
-  font-family: "Rubik Mono One", cursive;
-  text-shadow: 4px 4px 0 #212529, 4px -4px 0 #212529, -4px 4px 0 #212529, -4px -4px 0 #212529, 4px 0px 0 #212529, 0px 4px 0 #212529, -4px 0px 0 #212529, 0px -4px 0 #212529;
+  font-size: 2rem;
+  text-align: center;
 }
 
 #main header {
@@ -11919,6 +11914,18 @@ main {
   font-size: 2rem;
   color: white !important;
   text-shadow: #212529 1px 1px 0;
+}
+
+.navbar-brand {
+  font-family: "Rubik Mono One", cursive;
+  color: white !important;
+  text-shadow: 4px 4px 0 #212529, 4px -4px 0 #212529, -4px 4px 0 #212529, -4px -4px 0 #212529, 4px 0px 0 #212529, 0px 4px 0 #212529, -4px 0px 0 #212529, 0px -4px 0 #212529;
+}
+
+.navbar-brand:hover {
+  font-family: "Rubik Mono One", cursive;
+  color: #212529 !important;
+  text-shadow: none;
 }
 
 footer .navbar-laravel {
