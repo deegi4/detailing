@@ -9,7 +9,7 @@
                     </div>
                     <div class="mb-3 input-group input-group-lg">
                         <input v-model="client" type="text" class="form-control" placeholder="Имя" aria-label="Client">
-                        <input v-model="contact" v-input-mask mask="(999) 999-9999" type="text" class="form-control" placeholder="Контакт" aria-label="Contact">
+                        <masked-input v-model="contact" mask="\+\7 (111) 111-11-11" class="form-control" placeholder="Контакт" aria-label="Contact"/>
                     </div>
                     <div class="m-1 lead"  v-if="carClassId == 0">
                         Выберите класс автомобиля
@@ -222,13 +222,6 @@
 </script>
 
 <style lang="scss" scoped>
-    .dg-btn--ok {
-        border-color: #5a6268;
-    }
-
-    .dg-btn-loader .dg-circle {
-        background-color: #5a6268;
-    }
     /*.justify-content-evenly {*/
     /*    justify-content: evenly !important;*/
     /*}*/

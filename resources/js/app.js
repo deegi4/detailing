@@ -9,6 +9,9 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import MaskedInput from 'vue-masked-input'
+// Vue.use(MaskedInput, /* { default global options } */);
+
 //Mount Vue-Awesome-Swiper https://github.com/surmon-china/vue-awesome-swiper
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'
@@ -26,6 +29,7 @@ Vue.use(VueAwesomeSwiper, /* { default global options } */);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+Vue.component('masked-input', MaskedInput);
 Vue.component('appointments', require('./components/Appointments.vue').default);
 Vue.component('price-list', require('./components/PriceList.vue').default);
 Vue.component('date-list', require('./components/DateList.vue').default);
