@@ -6,7 +6,7 @@
         <div class="content">
             <div class="mt-4 card" v-for="service_type in price.service_types">
                 <div class="card-header">{{service_type.name}}</div>
-                <div  class="pointer card-body"
+                <div  class="card-body pointer"
                       v-for="job in service_type.jobs"
                       :class="{selected: isChecked(job.id)}"
                       :data-id="job.id"
@@ -83,7 +83,7 @@
     }
     .swiper-container {
         // TODO height auto from props
-        height: 414px;
+        height: 323px;
     }
     .swiper-slide.text {
         font-size: 18px!important;

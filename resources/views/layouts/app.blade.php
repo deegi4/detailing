@@ -9,6 +9,10 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
+    <!-- Import Styles/Scripts from the plugin and do not forget the jQuery library -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/css/jasny-bootstrap.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jasny-bootstrap/3.1.3/js/jasny-bootstrap.min.js"></script>
+
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
@@ -20,7 +24,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-    <div id="app">
+    <div >
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -86,12 +90,50 @@
             @if($title)
             <header class="px-4 pb-4">{{$title}}</header>
             @endif
-            @yield('content')
-        </main>
-    </div>
-    <div id="no-vue">
-        @yield('no-vue')
+            <div id="app">
+                @yield('content')
+            </div>
 
+                <div id="no-vue">
+                    @yield('no-vue')
+
+                </div>
+        </main>
+        <footer>
+
+            <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
+                <div class="container">
+
+
+
+
+                    {{--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">--}}
+                    {{--                <span class="navbar-toggler-icon"></span>--}}
+                    {{--            </button>--}}
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <label class="navbar-light mr-auto">©2019 www.detailing.ml</label>
+                        <a class="navbar-brand ml-auto" href="{{ url('/') }}">
+                            {{ config('app.name', 'Laravel') }}
+                        </a>
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav ml-auto">
+
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('appointments') }}">Запись на приём</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('work_examples') }}">Примеры работ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('about_us') }}">О нас</a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </nav>
+        </footer>
     </div>
 </body>
 </html>

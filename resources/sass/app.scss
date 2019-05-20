@@ -1,7 +1,8 @@
 
 // Fonts
 @import url('https://fonts.googleapis.com/css?family=Nunito');
-
+//@import url('https://fonts.googleapis.com/css?family=Comfortaa|Kosugi+Maru|Lobster|M+PLUS+1p|Montserrat+Alternates|Pacifico|Poiret+One|Press+Start+2P|Roboto|Roboto+Slab|Rubik|Rubik+Mono+One|Stalinist+One&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Montserrat+Alternates|Pacifico|Rubik|Rubik+Mono+One&display=swap');
 // Variables
 @import 'variables';
 
@@ -13,8 +14,8 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
-.week{
-
+.pointer{
+  cursor: pointer;
 }
 
 $grid-columns: 14;   // This is where you define the number of columns you need/want
@@ -29,34 +30,80 @@ $grid-columns: 14;   // This is where you define the number of columns you need/
     }
   }
 }
+main{
+  background-color: #cdd6de;
+  //background-color: #9aa6b1;
+}
 
 #main {
   height: 600px !important;
-  max-height: 550px;
+  //max-height: 550px;
   text-align: center;
   //background-color: #70FFBD;
   background-repeat: no-repeat;
   background-image: url(/img/main.jpg);
   //background-size: 40% !important;
-  background-position: 100% 110%;
-  -webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+  background-position: 90% 90%;
+  //-webkit-clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+  //clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
   //z-index: 20;
 }
 header{
+  font-family: 'Rubik Mono One', cursive;
   font-size: 2rem;
   text-align: center;
 }
+
 #main header {
+  font-family: 'Rubik Mono One', cursive;
+  //color: #FFFFFF;
+  //background: #FFFFFF;
+  text-shadow: $shadow-size-header $shadow-size-header 0 $shadow-color-base, $shadow-size-header $shadow-size-header-inverse 0 $shadow-color-base, $shadow-size-header-inverse $shadow-size-header 0 $shadow-color-base, $shadow-size-header-inverse $shadow-size-header-inverse 0 $shadow-color-base, $shadow-size-header 0px 0 $shadow-color-base, 0px $shadow-size-header 0 $shadow-color-base, $shadow-size-header-inverse 0px 0 $shadow-color-base, 0px $shadow-size-header-inverse 0 $shadow-color-base;
+  text-align: center;
   font-size: 5rem;
   color: white !important;
+  /*
+  color: #FFFFFF;
+  !* background: #005DFF; *!
+  text-shadow: -5px 5px 0px #cdd2d5, -10px 10px 0px #808d93, -15px 15px 0px #202c2d;
+  //color: #202c2d;
+  */
+
 }
 .slogan{
+  font-family: 'Pacifico', cursive;
   font-style: oblique;
   font-size: 2rem;
   color: white !important;
+  text-shadow: $shadow-color-base $shadow-size-base $shadow-size-base 0;
+  //text-shadow: -1px -1px 1px rgba(255,255,255,.1), 1px 1px 1px rgba(0,0,0,.5);
+  //text-shadow: $shadow-size-base $shadow-size-base 0 $shadow-color-base, $shadow-size-base $shadow-size-base-inverse 0 $shadow-color-base, $shadow-size-base-inverse $shadow-size-base 0 $shadow-color-base, $shadow-size-base-inverse $shadow-size-base-inverse 0 $shadow-color-base, $shadow-size-base 0px 0 $shadow-color-base, 0px $shadow-size-base 0 $shadow-color-base, $shadow-size-base-inverse 0px 0 $shadow-color-base, 0px $shadow-size-base-inverse 0 $shadow-color-base;
+
 }
 
-.pointer{
-  cursor: pointer;
+.navbar-brand{
+  //font-size: 2rem;
+  //font-size: 18px
+  //font-size: 28px;
+  font-family: 'Rubik Mono One', cursive;
+  //color: #212529 !important;
+  color: white !important;
+  text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+
+}
+
+.navbar-brand:hover{
+  //font-size: 2rem;
+  //font-size: 18px
+  //font-size: 28px;
+  font-family: 'Rubik Mono One', cursive;
+  //color: white !important;
+  //text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+  color: #212529 !important;
+  text-shadow: none;
+}
+
+footer .navbar-laravel {
+  background-color: #fff;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.04);
 }

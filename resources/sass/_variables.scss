@@ -3,9 +3,18 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: "Nunito", sans-serif;
+//$font-family-sans-serif: "Press Start 2P", sans-serif;
+//$font-family-sans-serif: "Montserrat Alternates", sans-serif;
+$font-family-sans-serif: "Montserrat Alternates", sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
+$shadow-size-brand: 4px;
+$shadow-size-brand-inverse: -4px;
+$shadow-size-header: 5px;
+$shadow-size-header-inverse: -5px;
+$shadow-size-base: 1px;
+$shadow-size-base-inverse: -1px;
+$shadow-color-base: #212529;
 
 // Colors
 $blue: #3490dc;

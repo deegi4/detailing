@@ -1,56 +1,77 @@
 <template>
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
-            <div class="col-5">
-                <div class="mb-3 input-group input-group-lg">
-                    <input v-model="client" type="text" class="form-control" placeholder="Имя" aria-label="Client">
-                    <input v-model="contact" type="text" class="form-control" placeholder="Контакт" aria-label="Contact">
-                </div>
-                <div class="m-1 lead"  v-if="carClassId == 0">
-                    Выберите класс автомобиля
-                </div>
-                <div class="m-1 lead" v-else-if="checkJobIds.length == 0">
-                    Выберите услуги
-                </div>
-                <div class="m-1 lead" v-else>
-                    Стоимость: {{cost}} ₽
-                </div>
 
-                <div class="btn-block btn-group">
-                    <button type="button" class="btn btn-secondary "
-                            v-for="carClassItem in carClassList"
-                            :class="{'active': carClassId == carClassItem.id}"
-                            @click="selectCarClass(carClassItem.id)"
-                    >
-                      {{carClassItem.name}}
-                    </button>
+            <template  v-if="canRegisterAppointment">
+                <div class="col-12 col-xl-5">
+                    <div class="m-1 lead">
+                        Заполните контактную информацию
+                    </div>
+                    <div class="mb-3 input-group input-group-lg">
+                        <input v-model="client" type="text" class="form-control" placeholder="Имя" aria-label="Client">
+                        <masked-input v-model="contact" mask="\+\7 (111) 111-11-11" class="form-control" placeholder="Контакт" aria-label="Contact"/>
+                    </div>
+                    <div class="m-1 lead"  v-if="carClassId == 0">
+                        Выберите класс автомобиля
+                    </div>
+                    <div class="m-1 lead" v-else-if="checkJobIds.length == 0">
+                        Выберите услуги
+                    </div>
+                    <div class="m-1 lead" v-else>
+                        Стоимость: {{cost}} ₽
+                    </div>
+
+                    <div class="btn-block btn-group">
+                        <button type="button" class="btn btn-secondary "
+                                v-for="carClassItem in carClassList"
+                                :class="{'active': carClassId == carClassItem.id}"
+                                @click="selectCarClass(carClassItem.id)"
+                        >
+                            {{carClassItem.name}}
+                        </button>
+                    </div>
+                    <price-list
+                            v-if="price.service_types !== undefined"
+                            :price="price"
+                            @return="returnPriceList"
+                    ></price-list>
+                    <div class="m-1 lead" v-else-if="carClassId > 0">
+                        Загрузка...
+                    </div>
                 </div>
-                <price-list
-                        v-if="price.service_types !== undefined"
-                        :price="price"
-                        @return="returnPriceList"
-                ></price-list>
-                <div class="m-1 lead" v-else-if="carClassId > 0">
-                    Загрузка...
+                <div class="col-12 col-xl-7">
+
+                    <!--
+                    <div class="mx-1 my-3 lead" v-else>
+                        Заполните контактную информацию
+                    </div>
+                    -->
+                    <div class="m-1 lead">
+                        Выберите время
+                    </div>
+                    <!--
+                    <div class="m-1 lead" v-else>
+                        {{date}}
+                    </div>
+                    -->
+                    <date-list
+                            :dates="dateList"
+                            @return="returnDateList"
+                    ></date-list>
                 </div>
+            </template>
+            <button class="mx-3 mt-3 btn btn-block btn-secondary btn-lg"
+                    :disabled="isDisabledRegister()"
+                    @click="registerAppointment"
+            >
+                Записаться на приём
+            </button>
+
+            <div class="m-1 lead" v-if="isDisabledRegister()">
+                {{message}}
             </div>
-            <div class="col-7">
-                <button class="mb-3 btn btn-block btn-secondary btn-lg"
-                        :disabled="isDisabledRegister()"
-                        @click="registerAppointment"
-                >
-                    Записаться на приём
-                </button>
-                <div class="m-1 lead" v-if="date.length == 0">
-                    Выберите время
-                </div>
-                <div class="m-1 lead" v-else>
-                    {{date}}
-                </div>
-                <date-list
-                        :dates="dateList"
-                        @return="returnDateList"
-                ></date-list>
+            <div class="m-1 lead" v-else>
+                *для записи нажмите кнопку "Записаться на приём"
             </div>
         </div>
     </div>
@@ -67,13 +88,15 @@
         },
         props: [
             'carClassList',
-            'dateList',
+            'dates',
         ],
         data() {
             return {
                 // carClassList: [],
+                canRegisterAppointment: true,
                 priceList: [],
-                message: 'Заполните контактную информацию',
+                dateList: this.dates,
+                message: 'для записи не хватает данных',
                 price: [],
                 carClassId: 0,
                 carClass: [],
@@ -130,6 +153,7 @@
                 }
             },
             reset(){
+                this.dateList = [];
                 this.carClassId = 0;
                 this.carClass = [];
                 this.price = [];
@@ -148,13 +172,11 @@
                     this.checkJobIds.length != 0;
             },
             isDisabledRegister(){
-                debugger;
-                let isDisabledRegister =
+                return !this.canRegisterAppointment ||
                     this.date.length == 0 ||
                     this.client.length == 0 ||
                     this.contact.length == 0 ||
                     this.checkJobIds.length == 0;
-                return isDisabledRegister;
             },
             returnPriceList(cost, checkJobIds, checkJobs){
                 this.cost = cost;
@@ -163,22 +185,12 @@
             },
             returnDateList(date){
                 this.date = date;
-                // if(this.client == '' || this.contact == ''){
-                //     this.message = ''
-                // }else{
-                //     this.message = date;
-                // }
 
             },
             registerAppointment(){
 
                 debugger;
-                console.log(this.cost);
-                console.log(this.checkJobIds);
-                console.log(this.checkJobs);
-                console.log(this.client);
-                console.log(this.contact);
-                this.message = "Оформляем запись на приём...";
+                this.canRegisterAppointment = false;
                 axios.post('/appointments/register', {
 
                     date: this.date,
@@ -189,12 +201,20 @@
                     contact: this.contact,
                 })
                     .then(response => {
-                        this.message = "Запись на приём оформлена!"
+                        debugger;
+                        this.reset();
+                        this.message = "Запись на приём оформлена!";
+                        console.log(this.dateList);
+                        this.dateList = response.data;
+                        console.log(this.dateList);
+                        this.canRegisterAppointment = true;
+
                     })
                     .catch(e => {
                         this.errors.push(e)
                     });
                 this.reset();
+                this.message = "Оформляем запись на приём...";
 
             }
         }
