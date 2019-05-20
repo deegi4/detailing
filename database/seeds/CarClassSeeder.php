@@ -13,13 +13,13 @@ class CarClassSeeder extends Seeder
     {
         //
         DB::table('car_classes')->insert([
-            'name' => 'лег.'
+            'name' => 'Легковые'
         ]);
         DB::table('car_classes')->insert([
-            'name' => 'ср.'
+            'name' => 'Средние'
         ]);
         DB::table('car_classes')->insert([
-            'name' => 'бол.'
+            'name' => 'Большие'
         ]);
 
     }
