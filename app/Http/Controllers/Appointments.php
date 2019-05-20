@@ -188,7 +188,8 @@ class Appointments extends Controller
         foreach ($appointmentList as $appointmentItem){
             $jobs[$appointmentItem->id] = $appointmentItem->jobs;
         }
-        return $jobs;
+        $dateList = $this->getDateList();
+        return $dateList;
 
     }
 

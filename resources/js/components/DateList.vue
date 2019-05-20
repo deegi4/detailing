@@ -9,9 +9,9 @@
 
                 <div class="date pt-3">{{day.week_day}}</div>
                 <hr class="my-1 mx-4">
-                <div class="list-group" v-for="hour in day.hours">
-                    <div class="mx-2 my-1 date">
-                        <div class="px-3 py-1 list-group-item list-group-item-action" data-entity="hour"
+                <div class="list-group" >
+                    <div class="mx-2 my-1 date" v-for="hour in day.hours">
+                        <div class="p-1 list-group-item list-group-item-action pointer" data-entity="hour"
                             :data-disabled="hour.disable"
                             :data-date="hour.date"
                             :disabled="isDisabled(hour.disable)"
@@ -59,7 +59,6 @@
         },
         methods: {
             update: function () {
-
                     this.dateList = this.dates;
             },
             isDisabled(disable){
