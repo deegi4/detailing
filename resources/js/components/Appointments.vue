@@ -2,7 +2,6 @@
     <div class="container">
         <div class="row">
 
-<!--            <template  v-if="canRegisterAppointment">-->
                 <div class="col-12 col-xl-5">
                     <div class="m-1 lead">
                         Заполните контактную информацию
@@ -41,11 +40,6 @@
                 </div>
                 <div class="col-12 col-xl-7">
 
-                    <!--
-                    <div class="mx-1 my-3 lead" v-else>
-                        Заполните контактную информацию
-                    </div>
-                    -->
                     <div class="m-1 lead">
                         Выберите время
                             {{titleHoursCount}}
@@ -61,7 +55,6 @@
                             @return="returnDateList"
                     ></date-list>
                 </div>
-<!--            </template>-->
             <button class="mx-3 mt-3 btn btn-block btn-secondary btn-lg"
                     :disabled="isDisabledRegister()"
                     @click="registerAppointment"
@@ -130,24 +123,9 @@
         methods: {
             update: function () {
 
-                // axios.get('/appointments/price-list').then((response) => {
-                //     this.priceList = response.data;
-                //     if(this.carClassId){
-                //         this.price = this.priceList[this.carClassId];
-                //     }
-                //     // console.log(this.priceList);
-                // });
-
                 if(this.carClassList[this.carClassId] !== undefined){
                     this.carClass = this.carClassList[this.carClassId];
                 }
-                // axios.get('/appointments/car-class-list').then((response) => {
-                //     this.carClassList = response.data;
-                //     if(this.carClassId){
-                //         this.carClass = this.carClassList[this.carClassId];
-                //     }
-                //     // console.log(this.carClassList);
-                // });
             },
             selectCarClass: function (carClassId) {
                 this.carClassId = carClassId;
@@ -207,7 +185,6 @@
 
                 this.canRegisterAppointment = false;
                 axios.post('/appointments/register', {
-
                     date: this.date,
                     cost: this.cost,
                     checkJobIds: this.checkJobIds,
@@ -224,13 +201,11 @@
                         this.$set(this, 'dateList', response.data);
                         console.log(this.dateList);
                         this.canRegisterAppointment = true;
-
                     })
                     .catch(e => {
                         this.errors.push(e)
                     });
                 this.message = "Оформляем запись на приём...";
-
             }
         }
     }

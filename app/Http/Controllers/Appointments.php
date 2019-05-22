@@ -22,8 +22,6 @@ class Appointments extends Controller
 //            $serviceType->jobs->load('service');
 //        }
 //        $priceList = $this->getPriceList($carClasses, $serviceTypes);
-//
-//        $appointments = Appointment::all();
         $dateList = $this->getDateList();
 
         return view('appointments')->with([
@@ -142,21 +140,16 @@ class Appointments extends Controller
     }
     public function getPriceList()
     {
-//        if(empty($carClasses)){
             $carClasses = CarClass::all();
-//        }
-//        if(empty($serviceTypes)){
             $serviceTypes = ServiceType::all();
             $serviceTypes = $serviceTypes->load('jobs');
             foreach ($serviceTypes as $serviceType) {
                 $serviceType->jobs->load('service');
             }
-//        }
         $priceList = [];
         foreach ($carClasses as $carClass) {
             $carClassData = [];
             $carClassId = $carClass->id;
-//            $carClassData['name'] = $carClass->name;
             foreach ($serviceTypes as $serviceType) {
                 $serviceTypeData = [];
                 $serviceTypeData['id'] = $serviceType->id;
@@ -180,7 +173,6 @@ class Appointments extends Controller
     {
         $data = $request->all();
         $date = $data['date'];
-//        $carbon = Carbon::parse($date);
         $appointmentData = [
             'time' => $date,
             'client' => $data['client'],
