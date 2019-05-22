@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
 
-            <template  v-if="canRegisterAppointment">
+<!--            <template  v-if="canRegisterAppointment">-->
                 <div class="col-12 col-xl-5">
                     <div class="m-1 lead">
                         Заполните контактную информацию
@@ -60,7 +60,7 @@
                             @return="returnDateList"
                     ></date-list>
                 </div>
-            </template>
+<!--            </template>-->
             <button class="mx-3 mt-3 btn btn-block btn-secondary btn-lg"
                     :disabled="isDisabledRegister()"
                     @click="registerAppointment"
@@ -97,7 +97,7 @@
                 canRegisterAppointment: true,
                 priceList: [],
                 dateList: this.dates,
-                message: 'для записи не хватает данных',
+                message: 'для записи заполните все поля',
                 price: [],
                 hoursCount: 0,
                 carClassId: 0,
@@ -158,7 +158,6 @@
                 }
             },
             reset(){
-                this.dateList = [];
                 this.carClassId = 0;
                 this.carClass = [];
                 this.price = [];
@@ -212,7 +211,8 @@
                         this.reset();
                         this.message = "Запись на приём оформлена!";
                         console.log(this.dateList);
-                        this.dateList = response.data;
+                        // this.dateList = response.data;
+                        this.$set(this, 'dateList', response.data);
                         console.log(this.dateList);
                         this.canRegisterAppointment = true;
 
@@ -220,7 +220,6 @@
                     .catch(e => {
                         this.errors.push(e)
                     });
-                this.reset();
                 this.message = "Оформляем запись на приём...";
 
             }
