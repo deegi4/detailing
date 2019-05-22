@@ -99,33 +99,32 @@
 
             <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                 <div class="container">
+                    <div class="mx-auto mb-auto">
+                          <a class=" navbar-brand ml-auto" href="{{ url('/') }}">
+                    {{ config('app.name', 'Laravel') }}
+                    </a>
+                    </div>
+                    <div class="ml-auto" >
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContentFooter" aria-controls="navbarSupportedContentFooter" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarSupportedContentFooter">
 
+                            <!-- Left Side Of Navbar -->
+                            <ul class="navbar-nav ml-auto">
 
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('appointments') }}">Запись на приём</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('work_examples') }}">Примеры работ</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('about_us') }}">О нас</a>
+                                </li>
+                            </ul>
 
-
-                    {{--            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">--}}
-                    {{--                <span class="navbar-toggler-icon"></span>--}}
-                    {{--            </button>--}}
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <label class="navbar-light mr-auto">©2019 www.detailing.ml</label>
-                        <a class="navbar-brand ml-auto" href="{{ url('/') }}">
-                            {{ config('app.name', 'Laravel') }}
-                        </a>
-                        <!-- Left Side Of Navbar -->
-                        <ul class="navbar-nav ml-auto">
-
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('appointments') }}">Запись на приём</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('work_examples') }}">Примеры работ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="{{ route('about_us') }}">О нас</a>
-                            </li>
-                        </ul>
-
+                        </div>
                     </div>
                 </div>
             </nav>
