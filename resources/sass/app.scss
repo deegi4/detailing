@@ -88,7 +88,8 @@ header{
   font-family: 'Rubik Mono One', cursive;
   //color: #212529 !important;
   color: white !important;
-  text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+  //text-shadow: $shadow-size-brand $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse $shadow-size-brand-inverse 0 $shadow-color-base, $shadow-size-brand 0px 0 $shadow-color-base, 0px $shadow-size-brand 0 $shadow-color-base, $shadow-size-brand-inverse 0px 0 $shadow-color-base, 0px $shadow-size-brand-inverse 0 $shadow-color-base;
+  text-shadow: 4px 4px 0 #212529, 4px -4px 0 #212529, -4px 4px 0 #212529, -4px -4px 0 #212529, 4px 0 0 #212529, 0 4px 0 #212529, -4px 0 0 #212529, 0 -4px 0 #212529, 0 1px 0 #212529, 4px -1px 0 #212529, 4px 1px 0 #212529, -4px 1px 0 #212529, 1px 4px 0 #212529, 2px 4px 0 #212529, 3px 4px 0 #212529, -1px 4px 0 #212529, -2px 4px 0 #212529, -3px 4px 0 #212529;
 
 }
 
