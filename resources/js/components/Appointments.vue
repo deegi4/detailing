@@ -181,6 +181,7 @@
                 return  this.date.length != 0 &&
                     this.client.length != 0 &&
                     this.contact.length != 0 &&
+                    !~this.contact.indexOf('_') &&
                     this.checkJobIds.length != 0;
             },
             isDisabledRegister(){
@@ -188,6 +189,7 @@
                     this.date.length == 0 ||
                     this.client.length == 0 ||
                     this.contact.length == 0 ||
+                    ~this.contact.indexOf('_') ||
                     this.checkJobIds.length == 0;
             },
             returnPriceList(cost, checkJobIds, checkJobs, hoursCount){
@@ -201,8 +203,8 @@
 
             },
             registerAppointment(){
+                if(this.isDisabledRegister()) return;
 
-                debugger;
                 this.canRegisterAppointment = false;
                 axios.post('/appointments/register', {
 

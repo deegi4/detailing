@@ -99,7 +99,7 @@
             <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                 <div class="container">
                     <div class="mr-auto mb-auto navbar">©2019 www.detailing.ml</div>
-                    <div class="mx-auto mb-auto">
+                    <div class="ml-auto mb-auto">
                           <a class=" navbar-brand ml-auto" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                     </a>
