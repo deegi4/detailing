@@ -21,6 +21,7 @@
 </head>
 <body>
     <div >
+
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -89,16 +90,15 @@
             <div id="app">
                 @yield('content')
             </div>
-
                 <div id="no-vue">
                     @yield('no-vue')
-
                 </div>
         </main>
-        <footer>
 
+        <footer>
             <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
                 <div class="container">
+                    <div class="mr-auto mb-auto navbar">©2019 www.detailing.ml</div>
                     <div class="mx-auto mb-auto">
                           <a class=" navbar-brand ml-auto" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -109,10 +109,7 @@
                             <span class="navbar-toggler-icon"></span>
                         </button>
                         <div class="collapse navbar-collapse" id="navbarSupportedContentFooter">
-
-                            <!-- Left Side Of Navbar -->
                             <ul class="navbar-nav ml-auto">
-
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('appointments') }}">Запись на приём</a>
                                 </li>
@@ -123,12 +120,12 @@
                                     <a class="nav-link" href="{{ route('about_us') }}">О нас</a>
                                 </li>
                             </ul>
-
                         </div>
                     </div>
                 </div>
             </nav>
         </footer>
+
     </div>
 </body>
 </html>
