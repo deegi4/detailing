@@ -69,7 +69,7 @@ class Appointments extends Controller
         if($now_h >= $end_work_h){
             $carbon->addHours(24);
         }
-        $appointmentList = Appointment::all()->where('time', '>', $now);
+        $appointmentList = Appointment::with('jobs')->where('time', '>', $now)->get();
         $disableTimes = [];
         $weekMap = [
             0 => 'SU',
@@ -91,8 +91,13 @@ class Appointments extends Controller
         ];
 
         foreach ($appointmentList as $appointment){
-            $disableTimes[] = $appointment->time;
+            $appointmentHoursCount = 0;
+            foreach ($appointment->jobs as $job){
+                $appointmentHoursCount += $job->hours_count;
+            }
+            $disableTimes[$appointment->time] = $appointmentHoursCount;
         }
+        $hourCount = 0;
         foreach ($days as $day){
             $dayData = [];
             $weekDayIndex = $carbon->isoWeekday();
@@ -109,11 +114,15 @@ class Appointments extends Controller
                 $dateTimestamp = $carbon->getTimestamp();
                 $nowTimestamp = $now->getTimestamp();
                 $isPastDate = $dateTimestamp < $nowTimestamp;
-                $hourData['disable'] = $isPastDate || in_array($date, $disableTimes);
+                if(isset($disableTimes[$date])){
+                    $hourCount = $disableTimes[$date];
+                }
+                $hourData['disable'] = $isPastDate || $hourCount > 0;
                 $hourData['date'] = $date;
                 $hourData['hour'] = $hour;
                 $hourData['start_time'] = $carbon->isoFormat('H:mm');
                 $carbon->addHours($period_h);
+                $hourCount -= $period_h;
                 $hourData['end_time'] = $carbon->isoFormat('H:mm');
 
                 $dayData['hours'][] = $hourData;
@@ -157,6 +166,7 @@ class Appointments extends Controller
                     $jobData = [];
                     $jobData['id'] = $job->id;
                     $jobData['price'] = $job->price;
+                    $jobData['hours_count'] = $job->hours_count;
                     $jobData['name'] = $job->service->name;
                     $serviceTypeData['jobs'][$job->id] = $jobData;
                 }
@@ -211,6 +221,7 @@ class Appointments extends Controller
             $jobData = [];
             $jobData['id'] = $job->id;
             $jobData['price'] = $job->price;
+            $jobData['hours_count'] = $job->hours_count;
             $jobData['name'] = $job->service->name;
             $serviceTypeData[$serviceTypeId]['jobs'][] = $jobData;
         }

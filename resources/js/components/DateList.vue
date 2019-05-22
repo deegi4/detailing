@@ -15,8 +15,8 @@
                             :data-disabled="hour.disable"
                             :data-date="hour.date"
                             :disabled="isDisabled(hour.disable)"
-                            :class="{selected: isCheckDate(hour.date), disabled: isDisabled(hour.disable)}"
-                            @click="checkDate(hour.date)"
+                            :class="{selected: isDisabled(hour.selected), disabled: isDisabled(hour.disable)}"
+                            @click="checkDate(hour.date, hour.hour, day.day, day.week_number)"
                         >
                             {{hour.start_time}}
                             <!--                        - {{hour.end_time}}-->
@@ -33,14 +33,15 @@
     export default {
         props: [
             'dates',
+            'hoursCount',
         ],
         data() {
             return {
                 dateList: [],
                 date: '',
                 weekIndex: 0,
-                day: null,
-                hour: null,
+                selectedDay: null,
+                selectedHour: null,
                 swiperOption: {
                     slidesPerView: 7,
                     spaceBetween: 0,
@@ -54,21 +55,80 @@
                 },
             }
         },
+        watch: {
+            hoursCount: function(newVal, oldVal) { // watch it
+                this.checkDate(this.date, this.selectedHour, this.selectedDay, this.weekIndex);
+                // console.log('Prop changed: ', newVal, ' | was: ', oldVal)
+            },
+            dates: function(newVal, oldVal) { // watch it
+                this.dateList = this.dates;
+            }
+        },
         mounted() {
             this.update();
         },
         methods: {
             update: function () {
-                    this.dateList = this.dates;
+                this.dateList = this.dates;
+                this.resetSelectedDates();
             },
             isDisabled(disable){
-                return ( disable == 1 );
+                return disable;
             },
-            checkDate(date){
-                debugger;
+            checkDate(date, selectedHour, selectedDay, weekIndex){
+
+                this.resetSelectedDates(date, selectedHour, selectedDay, weekIndex);
+                if(!this.isFreeTime(date, selectedHour, selectedDay, weekIndex)
+                ){
+                    // || this.dateList[selectedDay]['hours'][selectedHour-10]['disable'] == 1){
+                    this.weekIndex = 0;
+                    this.selectedDay = null;
+                    this.selectedHour = null;
+                    this.date = '';
+                    this.$emit('return', this.date);
+                    return;
+                }
+                this.weekIndex = weekIndex;
+                this.selectedDay = selectedDay;
+                this.selectedHour = selectedHour;
                 this.date = date;
-                // console.log(this.date);
+
+                let hoursCount = 0;
+                for ( let iterDay = selectedDay; iterDay < this.dateList.length; iterDay++){
+
+                    for ( let iterHour = 0; iterHour < this.dateList[iterDay].hours.length; iterHour++){
+                        if(!hoursCount && iterHour < selectedHour - 10) continue;
+                        hoursCount++;
+                        if(hoursCount > this.hoursCount ) break;
+                        if(!this.dateList[iterDay]['hours'][iterHour]['disable'])
+                            this.$set(this.dateList[iterDay]['hours'][iterHour], 'selected', 1);
+                            // this.dateList[iterDay]['hours'][iterHour]['selected'] = 1;
+
+
+                    }
+                    if(hoursCount > this.hoursCount ) break;
+                }
                 this.$emit('return', this.date);
+            },
+            resetSelectedDates(){
+                for ( let iterDay = 0; iterDay < this.dateList.length; iterDay++){
+                    for ( let iterHour = 0; iterHour < this.dateList[iterDay].hours.length; iterHour++){
+                        this.$set(this.dateList[iterDay]['hours'][iterHour], 'selected', 0);
+                    }
+                }
+            },
+            isFreeTime(selectedDate, selectedHour, selectedDay, selectedWeekIndex){
+                let hoursCount = 0;
+                for ( let iterDay = selectedDay; iterDay < this.dateList.length; iterDay++){
+                    for ( let iterHour = 0; iterHour < this.dateList[iterDay].hours.length; iterHour++){
+                        if(!hoursCount && iterHour < selectedHour - 10) continue;
+
+                        hoursCount++;
+                        if(hoursCount > this.hoursCount )  return true;
+                        if(this.dateList[iterDay]['hours'][iterHour]['disable']) return false;
+                    }
+                    if(hoursCount > this.hoursCount )  return true;
+                }
             },
             isCheckDate(date){
                 return this.date == date;

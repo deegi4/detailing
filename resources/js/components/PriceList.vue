@@ -34,6 +34,7 @@
                 checkJobs: {},
                 checkJobIds: [],
                 cost: 0,
+                hoursCount: 0,
                 swiperOption: {
                     direction: 'vertical',
                     slidesPerView: 'auto',
@@ -58,12 +59,15 @@
                 if (index === -1) {
                     this.checkJobIds.push(jobId);
                     this.cost += job.price;
+                    this.hoursCount += job.hours_count;
                 } else {
                     this.checkJobIds.splice(index, 1);
                     this.cost -= job.price;
+                    this.hoursCount -= job.hours_count;
                 }
                 // console.log(this.checkJobIds);
-                this.$emit('return', this.cost, this.checkJobIds, this.checkJobs);
+                debugger;
+                this.$emit('return', this.cost, this.checkJobIds, this.checkJobs, this.hoursCount);
             },
             isChecked(jobId){
                 return this.checkJobIds.indexOf(jobId) !== -1

@@ -18,6 +18,7 @@ class CreateJobsTable extends Migration
             $table->bigInteger('service_id');
             $table->bigInteger('car_class_id');
             $table->bigInteger('price');
+            $table->bigInteger('hours_count');
             $table->timestamps();
         });
 

@@ -56,6 +56,7 @@
                     -->
                     <date-list
                             :dates="dateList"
+                            :hours-count="appHoursCount"
                             @return="returnDateList"
                     ></date-list>
                 </div>
@@ -98,6 +99,7 @@
                 dateList: this.dates,
                 message: 'для записи не хватает данных',
                 price: [],
+                hoursCount: 0,
                 carClassId: 0,
                 carClass: [],
                 checkJobs: {},
@@ -110,6 +112,9 @@
             }
         },
         computed: {
+            appHoursCount(){
+                return this.hoursCount || 1;
+            },
 
         },
         mounted() {
@@ -157,6 +162,7 @@
                 this.carClassId = 0;
                 this.carClass = [];
                 this.price = [];
+                this.hoursCount = 0;
                 this.checkJobs = {};
                 this.checkJobIds = [];
                 this.cost = 0;
@@ -178,10 +184,11 @@
                     this.contact.length == 0 ||
                     this.checkJobIds.length == 0;
             },
-            returnPriceList(cost, checkJobIds, checkJobs){
+            returnPriceList(cost, checkJobIds, checkJobs, hoursCount){
                 this.cost = cost;
                 this.checkJobIds = checkJobIds;
                 this.checkJobs = checkJobs;
+                this.hoursCount = hoursCount;
             },
             returnDateList(date){
                 this.date = date;
