@@ -48,6 +48,7 @@
                     -->
                     <div class="m-1 lead">
                         Выберите время
+                            {{titleHoursCount}}
                     </div>
                     <!--
                     <div class="m-1 lead" v-else>
@@ -114,6 +115,12 @@
         computed: {
             appHoursCount(){
                 return this.hoursCount || 1;
+            },
+            titleHoursCount(){
+                if(!this.hoursCount) return '';
+                let dictionary = ['часов', 'час', 'часа', 'часа', 'часа'];
+                let hours = dictionary[this.hoursCount] || dictionary[0];
+                return ' ('+this.hoursCount+' '+hours+')';
             },
 
         },
