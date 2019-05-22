@@ -66,14 +66,14 @@
                     :disabled="isDisabledRegister()"
                     @click="registerAppointment"
             >
-                Записаться на приём
+                Записаться на приём *
             </button>
 
-            <div class="m-1 lead" v-if="isDisabledRegister()">
-                {{message}}
+            <div class="mx-4 my-1 lead mr-auto" v-if="isDisabledRegister()">
+                * {{message}}
             </div>
-            <div class="m-1 lead" v-else>
-                *для записи нажмите кнопку "Записаться на приём"
+            <div class="mx-4 my-1 lead mr-auto" v-else>
+                * для записи нажмите кнопку "Записаться на приём"
             </div>
         </div>
     </div>
