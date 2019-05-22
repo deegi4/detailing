@@ -31,7 +31,7 @@ class Appointments extends Controller
             'dateList' => $dateList,
             ]);
     }
-    public function getDateList($appointments = [])
+    public function getDateList()
     {
         $start_work_h = 10;
         $end_work_h = 20;
